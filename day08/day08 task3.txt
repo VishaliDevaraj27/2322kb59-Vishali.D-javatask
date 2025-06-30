@@ -1,0 +1,21 @@
+mysql> use task;
+Database changed
+mysql> update course set fee=6000 where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from course;
++------+-------------+-------+
+| id   | course_name | fee   |
++------+-------------+-------+
+|    1 | Java        |  6000 |
+|    2 | JavaScript  | 25000 |
+|    3 | Python      | 10500 |
+|    4 | Full-Stack  | 15000 |
++------+-------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> tee d:\day08 main.txt

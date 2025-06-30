@@ -1,0 +1,70 @@
+mysql> use task;
+Database changed
+mysql> create table book(
+    -> id int primary key,
+    -> title varchar(100),
+    -> author varchar(50)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table member(
+    -> mem_id int primary key,
+    -> name varchar(20),
+    -> type varchar(20)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table issue(
+    -> issue_id int primary key,
+    -> mem_id int,
+    -> id int,
+    -> issue_date date,
+    -> foreign key(mem_id) references member(mem_id),
+    -> foreign key(id) references book(id),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 8
+mysql> create table issue(
+    -> issue_id int primary key,
+    -> mem_id int,
+    -> id int,
+    -> issue_date date,
+    -> foreign key(mem_id) references member(mem_id),
+    -> foreign key(id) references book(id)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc book;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int          | NO   | PRI | NULL    |       |
+| title  | varchar(100) | YES  |     | NULL    |       |
+| author | varchar(50)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc member;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| mem_id | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| type   | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc issue;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| issue_id   | int  | NO   | PRI | NULL    |       |
+| mem_id     | int  | YES  | MUL | NULL    |       |
+| id         | int  | YES  | MUL | NULL    |       |
+| issue_date | date | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> tee d:\day08 post_assessment.txt
